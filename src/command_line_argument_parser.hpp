@@ -29,8 +29,8 @@ public:
     return (variables.count(username_option_name) > 0) ? variables[username_option_name].as<string>() : "";
   }
   
-  const vector<string>& filenames() {
-    return variables[files_option_name].as<vector<string>>();
+  const vector<string> filenames() {
+    return (variables.count(files_option_name) > 0) ? variables[files_option_name].as<vector<string>>() : vector<string>();
   }
 };
 
