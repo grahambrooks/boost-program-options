@@ -39,8 +39,17 @@ $(BUILD)/app		:	$(BUILD) $(OBJECTS) $(BUILD)/main.o
 $(BUILD)/apptest	:	$(OBJECTS) $(TEST_OBJECTS)
 	clang++ $^ -o $@ -std=c++11 -lc++ $(LIBS) $(TEST_LIBS)
 
+
 test			:	$(BUILD_TEST) $(BUILD)/apptest
 	./$(BUILD)/apptest
+
+
+ci-test: $(BUILD)/apptest
+	./$^ --log_format=XML --log_sink=results.xml --log_level=all --report_level=no
+
+ci-build:	clean $(BUILD)/app ci-test
+
+
 
 clean:
 	-rm -rf $(BUILD)/*
