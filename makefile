@@ -53,7 +53,7 @@ ci-build:	clean $(BUILD)/app ci-test
 
 clean:
 	-rm -rf $(BUILD)/*
-
+	-rm results.xml
 
 $(BUILD)/%.o : $(SRC)/%.cpp
 	clang++ -g -O1 -std=c++11 -Xclang "-stdlib=libc++" -I $(SRC) -I /usr/local/include -c $< -o $@
